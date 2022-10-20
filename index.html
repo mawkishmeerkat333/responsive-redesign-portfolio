@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/meerkat.png">
+  <title>Responsive Redesign</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Assignment 2: Responsive Redesign</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="navbar-item"><a href="#intro" class="nav-link">Introduction</a></li>
+            <li class="navbar-item"><a href="#part1" class="nav-link">Identify Problems</a></li>
+            <li class="navbar-item"><a href="#part2" class="nav-link">Visual Redesign</a></li>
+            <li class="navbar-item"><a href="#part3" class="nav-link">Responsive Redesign</a></li>
+            <li class="navbar-item"><a href="#takeaways" class="nav-link">Takeaways</a></li>
+          </ul>
+        </div>
+    </div>
+  </nav>
+
+  <div class="d-flex flex-column pattern justify-content-center align-items-center text-center mb-0">
+    <h1 class="text-dark display-1">Responsive Redesign</h1>
+    <h2 class="text-dark h4">by Mawkish Meerkat</h2>
+    <img alt="graphic of a meerkat" src="images/meerkat.png" style="width: 100px; height: 100px;">
+  </div>
+
+  <div id="intro" class="container-fluid text-left text-dark bg-light pb-5 px-0">
+    <h2>Introduction</h2>
+    <p>
+      For this project I redesigned a page from the website of a local restaurant in my hometown. 
+      To do so, I identified usability and accessibility concerns with the original design, drew up wireframes,
+      created a style guide, prototyped my redesign, and designed the new webpage with HTML, CSS, and a sprinkle of JavaScript. 
+      This was a fun exercise in considering all aspects that go into frontend website design, so enjoy!
+    </p>
+  </div>
+
+  <div id="part1" class="container-fluid text-left text-dark bg-light pb-5 px-0">
+    <h2>Part 1: Identify Problems</h2>
+    <h6 class="lead">Part 1a: Picking a Website</h6>
+    <p>
+      I knew from the outset that I wanted to redesign a website related to something in my hometown, 
+      so I went with the landing page of the website for a local 
+      restaurant named Amalfi's. The webpage was just right: it had enough issues upon which I felt comfortable improving while not so many that I didn't know where to start. You can check out for the original webpage <a href="https://www.amalfisofmountpleasant.com/">here</a>.
+    </p>
+    <div>
+      <figure>
+        <img alt="screenshot of original landing page of Amalfi's website" class="image-fluid center-block" src="images/Original Webpage.png" alt="first screenshot of the website for the restaurant Amalfi's" style="padding: 20px;">
+        <figcaption class="mb-5 text-center">Fig. 1: Original landing page of Amalfi's website</figcaption>
+      </figure>
+    </div>
+
+    <h6 class="lead">Part 1b: Usability Problems</h6>
+    <p>
+      After looking over the webpage—clicking buttons, resizing the window, following links—I found numerous issues:
+    </p>
+    <ol>
+      <li>The title is actually an image that can bleed off-screen and create awkward white margins.</li>
+      <li>The website is inconsistent in styling its buttons: there are four different designs used. This can create confusion.</li>
+      <li>Similarly, there are too many different fonts: at least five that are apparent.</li>
+      <li>There are two buttons for ordering online: one amongst the navbar buttons and another next to a button for DoorDash Delivery. I think this is in conflict with the user's conceptual model. The navbar usually contains internal navigation links, so linking to an external ordering service there would be clunky, even if there were not already another button for ordering online. 
+      <li>Moreover, the button to call is not grouped alongside the two order buttons in desktop or mobile. It would be more intuitive to group all ordering methods together.</li></li>
+      <li>Amalfi's landing page does not make use of its footer. There is a separate page for contact and reservations, which works, but many sites also list hours of operation, social media, and such in the footer.</li>
+      <li>In desktop view, two of the buttons clip off-screen.</li>
+      <li>When viewed on a phone, the ordering is out of sorts. The online order and DoorDash buttons appear first, then the welcome text "Benvenuto!", then an awkwardly large space, then the "Call Now!" button, then a picture, text, and a second picture. This ordering breaks up the logical flow and sensible groupings of the elements.</li>
+    </ol>
+
+    <h6 class="lead text-center">Part 1c: Accessability Problems</h6>
+    <p>
+      Looking at the accessibility concerns flagged by WAVE, it confirmed some of my thoughts as well as pointed out issues I had missed:
+    </p>
+    <ol>
+      <li>There is an empty heading on the page: this is the culprit behind the weird spacing in mobile view.</li>        
+      <li>WAVE warned of low contrast with the welcome text, something I noticed when I first visited the site.</li>        
+      <li>Furthermore, WAVE also warned oflow contrast with the navbar buttons. I think the contrast issue with the buttons is less egregious, but the buttons are a tad unsightly, so the buttons need work either way.</li>        
+      <li>WAVE noted bad alt text and ironically some of the alt text it labeled as good was just as bad. <code>*Untitled*</code> is not good alt text WAVE!</li> 
+      <li>WAVE flagged one of the buttons for "suspicious link text" because it contained the phrase <code>"click here"</code>. In its explanation of the alert, WAVE considers text like "click here" as extraneous. This is not something I initially considered, but if the element is clearly a link, that phrasing is indeed redundant.</li>        
+      <li>Finally, WAVE alerted me to very small text. I couldn't find the text until I turned off styling, because the div containing the text has <code>display: none</code>. It seems to be intended for screen readers only, so it is otherwise hidden to the naked eye. The note seems unneeded and so could be done away with.</li>        
+    </ol>
+  </div>
+
+  <div id="part2" class="container-fluid text-left text-dark bg-light pb-5 px-0">
+    <h2>Part 2: Visual Redesign</h2>
+    <h6 class="lead">Part 2a: Lo-fi Wireframing</h6>
+    <p>After taking note of the aforestated issues in the exploratory of this project, I moved on to drafting the layout
+      and styling of my redesign. First up was to create low-fidelity wireframes for the three screen sizes under consideration—mobile, tablet, and desktop.
+    </p>
+    <div class="row m-0">
+      <div class="col-12 col-lg-6">
+        <figure>
+          <img alt="wireframe for mobile" class="image-fluid" src="images/Mobile Wireframe.png">
+          <figcaption class="mb-5 text-center">Fig. 2: Wireframe for mobile</figcaption>
+        </figure>
+      </div>
+      <div class="col-12 col-lg-6">
+        <figure>
+          <img alt="wireframe for tablet" class="image-fluid" src="images/Tablet Wireframe.png">
+          <figcaption class="mb-5 text-center">Fig. 3: Wireframe for tablet</figcaption>
+        </figure>
+      </div>
+      <div class="col-12">
+        <figure>
+          <img alt="wireframe for desktop" class="image-fluid" src="images/Desktop Wireframe.png">
+          <figcaption class="mb-5 text-center">Fig. 4: Wireframe for desktop</figcaption>
+        </figure>
+      </div>
+    </div>
+    <p>With a general idea of what elements I wanted to include, I went ahead creating a cohesive design that addressed the issues 
+      such as too many fonts, poor contrast, and inconsistent button styling.
+    </p>
+    <h6 class="lead">Part 2b: Visual Design Style Guide</h6>
+    <figure>
+      <img alt="style guide for the Amalfi's webpage redesign" class="image-fluid" src="images/Style Guide.png">
+      <figcaption class="mb-5 text-center">Fig. 5: Style guide for the Amalfi's webpage redesign</figcaption>
+    </figure>
+    <p>The style guide depicted is the final iteration, which includes a few additions and updates. First, the text inside the buttons 
+      was initially the off-white color. However, WAVE flagged that for low contrast. I changed it to the off-black, and not only
+      is the contrast now better, but I also think the final button design looks nicer. After deciding to include a footer while building the website, I paused
+      to consider how to style hyperlinks and the social media logos in order to maintain cohesion.
+    </p>
+
+    <h6 class="lead">Part 2c: Hi-fi Prototyping</h6>
+    <p>I finally moved on to the high-fidelity prototypes, which I have retroactively updated to use the the new text color
+      for the buttons as well as adjust a comment or two to reflect the reality of how I coded the webpage.
+    </p>
+    <div class="row m-0">
+      <div class="col-12 col-lg-6">
+        <figure>
+          <img alt="prototype for mobile" class="image-fluid" src="images/Mobile Prototype.png">          
+          <figcaption class="mb-5 text-center">Fig. 6: Prototype for mobile</figcaption>
+        </figure>
+      </div>
+      <div class="col-12 col-lg-6">
+        <figure>
+          <img alt="prototype for tablet" class="image-fluid" src="images/Tablet Prototype.png">
+          <figcaption class="mb-5 text-center">Fig. 7: Prototype for tablet</figcaption>
+        </figure>
+      </div>
+      <div class="col-12">
+        <figure>
+          <img alt="prototype for desktop" class="image-fluid" src="images/Desktop Prototype.png">
+          <figcaption class="mb-5 text-center">Fig. 8: Prototype for desktop</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div id="part3" class="container-fluid text-left text-dark bg-light pb-5 px-0">
+    <h2>Part 3: Responsive Redesign</h2>
+    <p>I am very proud of how my redesigned website came out. You can check it out for yourself <a href="https://mawkishmeerkat333.github.io/responsive-redesign/" target="_blank">here</a>.</p>
+    <figure>
+      <img alt="redesigned landing page for Amalfi's website" class="image-fluid" src="images/Redesigned Webpage.png">
+      <figcaption class="mb-5 text-center">Fig. 9: Redesigned landing page for Amalfi's website</figcaption>
+    </figure>
+  </div>
+
+  <div id="takeaways" class="container-fluid text-left text-dark bg-light pb-5">
+    <h2>Takeaways</h2>
+    <p>
+      Even though my redesign will not become the new site for Amalfi's, the whole process has felt a bit like giving back to my community. As I get better at website design throughout this class and beyond, perhaps I can offer to create/redesign websites for those in my community pro bono.
+    </p>
+  </div>
+
+  <footer class="bg-dark text-end p-0">
+    <div class="container">
+      <p id="footer-text" class="mb-0">
+        Made with <font color="darkpink">&hearts;</font> by <a style="text-decoration: none;" target="_blank" href="https://www.youtube.com/watch?v=U76zyUFg3Xo&ab_channel=TLKSongs">Mawkish Meerkat</a><br><br>
+        Big shoutout to Jeff for his super-duper helpful walkthrough of coding with Bootstrap!!<br>
+        Software used in the creation of this webpage includes Adobe Illustrator, Adobe Photoshop, Balsamiq, and Figma.<br>
+        Credit to Icongeek26 on Flaticon for <a href="https://www.flaticon.com/free-icon/meerkat_4053665" target="_blank">the meerkat graphic</a>. 
+      </p>
+    </div> 
+  </footer>
+
+</body>
+</html>
